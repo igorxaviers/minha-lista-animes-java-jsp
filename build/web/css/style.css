@@ -1,0 +1,98 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap');
+body{
+    background-color: #f1f1f1;
+    overflow-x: hidden;
+}
+*{
+    font-family: 'Poppins', sans-serif;
+    color: #333;
+}
+:root{
+    --primary-color: #00D6A2; 
+}
+h1{
+    font-weight: 400;
+}
+strong{
+    font-weight: 800;
+}
+a{
+    text-decoration: none;
+    color: #333;
+}
+
+.busca{
+    border-radius: 10px !important;
+    overflow: hidden;
+}
+.btn-green{
+    background-color: var(--primary-color);
+}
+.fa-search{
+    font-size: 26px;
+}
+.anime{
+    position: relative;
+    border-radius: 10px;
+    padding: 10px;
+    background-color: #fff;
+    box-shadow: rgba(0, 0, 0, 0.02) 0px 2px 5px;
+    transition: 300ms;
+
+}
+.anime:hover{
+    transform: translateY(-7px);
+    box-shadow: rgba(0, 0, 0, 0.04) 0px 15px 15px;
+}
+.anime img{
+    object-fit: cover;
+    border-radius: 50%;
+    height: 110px;
+    width: 110px;
+    border: var(--primary-color) 4px solid;
+}
+.anime .acoes{
+    right: 50px;
+    top: 50px;
+    display: flex;
+    justify-content: flex-end;
+}
+.anime .acao{
+    cursor: pointer;
+    padding: 5px 10px;
+    margin: 5px;
+    border-radius: 6px;
+    background-color: var(--primary-color);
+}
+.anime .titulo{
+    text-align: center;
+    font-weight: 700;
+}
+.anime .genero{
+    background-color: var(--primary-color);
+    border-radius: 8px;
+    padding: 4px 10px;
+    width: fit-content;
+    font-size: 13px;
+    font-weight: 700;
+    margin-left: 4px;
+}
+.novo-anime{
+    text-align: center;
+    position: fixed;
+    background-color: var(--primary-color);
+    padding: 20px 15px;
+    border-radius: 12px 0 0 12px;
+    right: 0;
+    bottom: 50%;
+    box-shadow: rgba(0, 0, 0, 0.05) 3px 10px 15px;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+.novo-anime i{
+    font-size: 20px;
+}
+.svg-bg{
+    position: absolute;
+    left: -20em;
+}
