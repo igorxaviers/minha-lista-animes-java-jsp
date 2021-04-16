@@ -18,7 +18,6 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
         <script src="https://kit.fontawesome.com/a8349f7f3a.js" crossorigin="anonymous"></script>
         <link rel="stylesheet" href="css/style.css">
-        <script src="js/scripts.js"></script>
     </head>
     <body class="col-md-8 mx-auto">
         <header class="text-center py-5">
@@ -32,9 +31,9 @@
                 </div>
             </form>
 
-            <div class="novo-anime-form col-md-8 col-12 mx-auto p-4 mb-5 bg-white rounded-3">
+            <div class="novo-anime-form col-md-5 col-12 mx-auto p-4 mb-5 bg-white rounded-3">
                 <h4 class="mb-5">Novo anime: </h4>
-                <form action="POST" enctype="multipart/form-data">
+                <form method="POST" action="CadastroAnime" enctype="multipart/form-data" id="form-cadastro">
 
                     <div class="mb-3 row">
                         <label for="nome" class="col-sm-2 col-form-label">Nome: </label>
@@ -47,22 +46,22 @@
                         <label for="genero" class="col-sm-2 col-form-label">Gênero: </label>
                         <div class="col-sm-10">
                             <select class="form-select" name="genero" id="genero">
-                            <%
-                                ArrayList<Genero> lista = new DALGenero().getGeneros("");
-                                for(Genero g : lista){
-                                    out.println("<option>"+g.getNome()+"</option>");
-                                }
-                                out.println("<option>aaa</option>");
-                            %>
+                                <%
+                                    ArrayList<Genero> lista = new DALGenero().getGeneros("");
+                                    for(Genero g : lista){
+                                        out.println("<option value='"+g.getId()+"'>"+g.getNome()+"</option>");
+                                    }
+                                    out.println("<option>aaa</option>");
+                                %>
                                 <option selected>Escolha o gênero</option>
                             </select>
                         </div>
                     </div>
 
                     <div class="mb-5 row">
-                        <label for="foto" class="col-sm-2 col-form-label">Foto: </label>
+                        <label for="imagem" class="col-sm-2 col-form-label">Imagem: </label>
                         <div class="col-sm-10">
-                            <input class="form-control" type="file" name="foto" id="foto">
+                            <input class="form-control" type="file" name="imagem" id="imagem">
                         </div>
                     </div>
 
@@ -142,6 +141,7 @@
         <svg class="svg-bg" width="651" height="675" viewBox="0 0 651 675" fill="none" xmlns="http://www.w3.org/2000/svg">
             <rect x="360.33" width="490.073" height="472.017" rx="126" transform="rotate(53.6832 360.33 0)" fill="#00D6A2"/>
         </svg>
+        <!-- <script src="js/scripts.js"></script> -->
             
     </body>
 </html>

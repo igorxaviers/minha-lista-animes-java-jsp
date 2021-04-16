@@ -3,17 +3,17 @@ package bd.entidades;
 public class Anime {
 
     private int id, id_genero;
-    private String nome, foto;
+    private String nome, imagem;
 
     public Anime() {
         this(0, 0, "", "");
     }
 
-    public Anime(int id, int id_genero, String nome, String foto) {
+    public Anime(int id, int id_genero, String nome, String imagem) {
         this.id = id;
         this.id_genero = id_genero;
         this.nome = nome;
-        this.foto = foto;
+        this.imagem = imagem;
     }
 
     public int getId() {
@@ -40,17 +40,17 @@ public class Anime {
         this.nome = nome;
     }
 
-    public String getFoto() {
-        return foto;
+    public String getImagem() {
+        return imagem;
     }
 
-    public void setFoto(String foto) {
-        this.foto = foto;
+    public void setImagem(String imagem) {
+        this.imagem = imagem;
     }
 
     @Override
     public String toString() {
-        return id + "," + nome + "," + foto;
+        return id + "," + nome + "," + imagem;
     }
 
 }

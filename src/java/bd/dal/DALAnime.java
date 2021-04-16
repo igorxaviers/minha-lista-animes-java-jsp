@@ -7,10 +7,10 @@ import java.util.ArrayList;
 
 public class DALAnime {
     public boolean salvar(Anime a) {
-        String sql = "insert into animes (id_genero, nome, foto) values ('$1','$2','$3')";
+        String sql = "insert into animes (id_genero, nome, imagem) values ('$1','$2','$3')";
         sql = sql.replace("$1", Integer.toString(a.getIdGenero()));
         sql = sql.replace("$2", a.getNome());
-        sql = sql.replace("$3", a.getFoto());
+        sql = sql.replace("$3", a.getImagem());
         Conexao con = new Conexao();
         boolean flag = con.manipular(sql);
         con.fecharConexao();
@@ -18,10 +18,10 @@ public class DALAnime {
     }
 
     public boolean alterar(Anime a) {
-        String sql = "update animes set id_genero='$1', nome='$2', foto='$3' where id_ani=" + a.getId();
+        String sql = "update animes set id_genero='$1', nome='$2', imagem='$3' where id_ani=" + a.getId();
         sql = sql.replace("$1", Integer.toString(a.getIdGenero()));
         sql = sql.replace("$2", a.getNome());
-        sql = sql.replace("$3", a.getFoto());
+        sql = sql.replace("$3", a.getImagem());
         Conexao con = new Conexao();
         boolean flag = con.manipular(sql);
         con.fecharConexao();
@@ -42,7 +42,8 @@ public class DALAnime {
         ResultSet rs = con.consultar(sql);
         try {
             if (rs.next())
-                a = new Anime(rs.getInt("id_ani"), rs.getInt("id_genero"), rs.getString("nome"), rs.getString("foto"));
+                a = new Anime(rs.getInt("id_ani"), rs.getInt("id_genero"), rs.getString("nome"),
+                        rs.getString("imagem"));
         } catch (Exception e) {
             System.out.println(e);
         }
@@ -61,7 +62,7 @@ public class DALAnime {
         try {
             while (rs.next())
                 lista.add(new Anime(rs.getInt("id_ani"), rs.getInt("id_genero"), rs.getString("nome"),
-                        rs.getString("foto")));
+                        rs.getString("imagem")));
         } catch (Exception e) {
             System.out.println(e);
         }
