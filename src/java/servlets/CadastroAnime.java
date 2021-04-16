@@ -19,7 +19,9 @@ import javax.servlet.http.Part;
 
 
 import bd.dal.DALAnime;
+import bd.dal.DALGenero;
 import bd.entidades.Anime;
+import java.util.ArrayList;
 
 @MultipartConfig(
         location = "/",
@@ -30,6 +32,30 @@ import bd.entidades.Anime;
 
 @WebServlet(name = "CadastroAnime", urlPatterns = { "/CadastroAnime" })
 public class CadastroAnime extends HttpServlet {
+    
+    public String buscaPaises(String filtro) {
+        String res = "";
+        ArrayList<Anime> animes = new DALAnime().getAnime("");
+        
+        for (Anime anime : animes) {
+          res += String.format(""
+                  + "<div class=\"col-6 col-md-3 \">\n" +
+"                      <div class=\"anime\">\n" +
+"                        <div class=\"acoes\">\n" +
+"                          <div class=\"acao\"><i class=\"fas fa-trash-alt\"></i></div>\n" +
+"                           <div class=\"acao\"><i class=\"fas fa-pencil-alt\"></i></div>\n" +
+"                          </div>\n" +
+"                            <img src=\" " + getServletContext().getRealPath("") + anime.getImagem() + " \" alt=\"\" class=\"d-block mx-auto\">\n" +
+"                            <p class=\"titulo my-3 text-center\"> "+ anime.getNome()  +" </p>\n" +
+"                         <div class=\"mx-auto d-flex justify-content-center\">\n" +
+"                           <p class=\"genero\">" + new DALGenero().getGeneros("" + anime.getIdGenero()) + "</p>\n" +
+"                       </div>\n" +
+"                     </div>\n" +
+"                   </div>");
+        }
+      
+        return res;
+    }
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -37,26 +63,32 @@ public class CadastroAnime extends HttpServlet {
 
         String mensagem;
         Exception ex = null;
-        try(PrintWriter out = response.getWriter()) {
+        try (PrintWriter out = response.getWriter()) {
+            
             int idGenero = Integer.parseInt(request.getParameter("genero"));
             String nome = request.getParameter("nome");
             String path = getServletContext().getRealPath("/images") + "/";
+            String filePath = "images/", fileRealName = "";
             mensagem = "dados e foto recebidos com sucesso";
             Part imagem = request.getPart("imagem");
+            
+            //out.print(getServletContext().getRealPath("/image"));
 
             byte[] img = new byte[(int)imagem.getSize()];
-
+            
             imagem.getInputStream().read(img);
-            out.print(imagem.getContentType());
+            
+            FileOutputStream arquivo = new FileOutputStream(new File(path + imagem.getSubmittedFileName()));
+            //out.print( getServletContext().getRealPath("")   + filePath + imagem.getSubmittedFileName()); DIRETORIO DO CONTEXTO SERVLET + filePath
+            
+            fileRealName = filePath + imagem.getSubmittedFileName();
+            
+            arquivo.write(img);
+            arquivo.close();
 
-//            FileOutputStream arquivo = new FileOutputStream(new File(path + imagem.getSubmittedFileName());
-//            path += nome;
-//            arquivo.write(img);
-//            arquivo.close();
-//
-//            Anime anime = new Anime(0, idGenero, nome, path);
-//            DALAnime da = new DALAnime();
-//            da.salvar(anime);
+            Anime anime = new Anime(0, idGenero, nome, fileRealName);
+            DALAnime da = new DALAnime();
+            da.salvar(anime);
 
         } catch (Exception e) {
             mensagem = "Erro ao cadastrar";

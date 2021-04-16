@@ -8,7 +8,7 @@ body{
     color: #333;
 }
 :root{
-    --primary-color: #00D6A2; 
+    --primary-color: #00D6A2; //#239CE8 
 }
 h1{
     font-weight: 400;

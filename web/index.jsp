@@ -4,6 +4,8 @@
     Author     : igorr
 --%>
 
+<%@page import="bd.entidades.Anime"%>
+<%@page import="bd.dal.DALAnime"%>
 <%@page import="bd.dal.DALGenero"%>
 <%@page import="bd.entidades.Genero"%>
 <%@page import="java.util.ArrayList"%>
@@ -33,7 +35,7 @@
 
             <div class="novo-anime-form col-md-5 col-12 mx-auto p-4 mb-5 bg-white rounded-3">
                 <h4 class="mb-5">Novo anime: </h4>
-                <form method="POST" action="CadastroAnime" enctype="multipart/form-data" id="form-cadastro">
+                <form method="POST" enctype="multipart/form-data" id="form-cadastro">
 
                     <div class="mb-3 row">
                         <label for="nome" class="col-sm-2 col-form-label">Nome: </label>
@@ -51,7 +53,6 @@
                                     for(Genero g : lista){
                                         out.println("<option value='"+g.getId()+"'>"+g.getNome()+"</option>");
                                     }
-                                    out.println("<option>aaa</option>");
                                 %>
                                 <option selected>Escolha o gênero</option>
                             </select>
@@ -79,51 +80,8 @@
                                 <div class="acao"><i class="fas fa-pencil-alt"></i></div>
                             </div>
                             <img src="images/33657.jpg" alt="" class="d-block mx-auto">
-                            <p class="titulo my-3 text-center">Hunter x Hunter</p>
+                            <p class="titulo my-3 text-center"> </p>
                             <div class="mx-auto d-flex justify-content-center">
-                                <p class="genero">Hentai</p>
-                                <p class="genero">Hentai</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-6 col-md-3 ">
-                        <div class="anime">
-                            <div class="acoes">
-                                <div class="acao"><i class="fas fa-trash-alt"></i></div>
-                                <div class="acao"><i class="fas fa-pencil-alt"></i></div>
-                            </div>
-                            <img src="images/33657.jpg" alt="" class="d-block mx-auto">
-                            <p class="titulo my-3 text-center">Hunter x Hunter</p>
-                            <div class="mx-auto d-flex justify-content-center">
-                                <p class="genero">Hentai</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-6 col-md-3 ">
-                        <div class="anime">
-                            <div class="acoes">
-                                <div class="acao"><i class="fas fa-trash-alt"></i></div>
-                                <div class="acao"><i class="fas fa-pencil-alt"></i></div>
-                            </div>
-                            <img src="images/33657.jpg" alt="" class="d-block mx-auto">
-                            <p class="titulo my-3 text-center">Hunter x Hunter</p>
-                            <div class="mx-auto d-flex justify-content-center">
-                                <p class="genero">Hentai</p>
-                                <p class="genero">Hentai</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-6 col-md-3 ">
-                        <div class="anime">
-                            <div class="acoes">
-                                <div class="acao"><i class="fas fa-trash-alt"></i></div>
-                                <div class="acao"><i class="fas fa-pencil-alt"></i></div>
-                            </div>
-                            <img src="images/33657.jpg" alt="" class="d-block mx-auto">
-                            <p class="titulo my-3 text-center">Hunter x Hunter</p>
-                            <div class="mx-auto d-flex justify-content-center">
-                                <p class="genero">Hentai</p>
-                                <p class="genero">Hentai</p>
                                 <p class="genero">Hentai</p>
                             </div>
                         </div>
@@ -141,7 +99,7 @@
         <svg class="svg-bg" width="651" height="675" viewBox="0 0 651 675" fill="none" xmlns="http://www.w3.org/2000/svg">
             <rect x="360.33" width="490.073" height="472.017" rx="126" transform="rotate(53.6832 360.33 0)" fill="#00D6A2"/>
         </svg>
-        <!-- <script src="js/scripts.js"></script> -->
+         <script src="js/scripts.js"></script> 
             
     </body>
 </html>

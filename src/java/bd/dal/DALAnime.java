@@ -18,7 +18,7 @@ public class DALAnime {
     }
 
     public boolean alterar(Anime a) {
-        String sql = "update animes set id_genero='$1', nome='$2', imagem='$3' where id_ani=" + a.getId();
+        String sql = "update animes set id_genero='$1', nome='$2', imagem='$3' where id_ani = " + a.getId();
         sql = sql.replace("$1", Integer.toString(a.getIdGenero()));
         sql = sql.replace("$2", a.getNome());
         sql = sql.replace("$3", a.getImagem());
@@ -30,14 +30,14 @@ public class DALAnime {
 
     public boolean apagar(int id) {
         Conexao con = new Conexao();
-        boolean flag = con.manipular("delete from animes where id_ani=" + id);
+        boolean flag = con.manipular("delete from animes where id_ani = " + id);
         con.fecharConexao();
         return flag;
     }
 
     public Anime getAnime(int id) {
         Anime a = null;
-        String sql = "select * from animes where id_ani=" + id;
+        String sql = "select * from animes where id_ani = " + id;
         Conexao con = new Conexao();
         ResultSet rs = con.consultar(sql);
         try {
@@ -56,7 +56,7 @@ public class DALAnime {
         String sql = "select * from animes";
         if (!filtro.isEmpty())
             sql += " where " + filtro;
-        sql += " order by id_ani DESC";
+        sql += " order by nome";
         Conexao con = new Conexao();
         ResultSet rs = con.consultar(sql);
         try {
