@@ -83,9 +83,10 @@
                     <div class="mb-5 row">
                         <label for="imagem" class="col-sm-2 col-form-label">Imagem: </label>
                         <div class="col-sm-10">
-                            <input class="form-control" type="file" name="imagem" id="imagem">
+                            <input class="form-control" type="file" name="imagem" id="imagem"> <input id="showFileName" class="form-control d-none" placeholder="" disabled> 
                         </div>
                     </div>
+                    <input type="text" id="cod" class="d-none" name="cod" value="0"/>
                     <button 
                     class="btn btn-cadastrar btn-green px-5 w-100 py-2 d-flex align-items-center justify-content-center"
                     type="submit" 

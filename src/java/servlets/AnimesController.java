@@ -3,6 +3,8 @@ package servlets;
 import bd.dal.DALAnime;
 import bd.dal.DALGenero;
 import bd.entidades.Anime;
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -11,6 +13,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.Part;
 
 @WebServlet(name = "AnimesController", urlPatterns = { "/AnimesController" })
 public class AnimesController extends HttpServlet {
@@ -54,15 +57,13 @@ public class AnimesController extends HttpServlet {
                 busca = "UPPER(nome) LIKE '%" + busca.toUpperCase() + "%'";
             response.getWriter().print(buscaAnimes(busca));
             break;
-
         case "excluir":
-
+            dalA.apagar(id);
             break;
-
         case "alterar":
-
+            Anime anime = dalA.getAnime(id);
+            response.getWriter().print(anime + "," + anime.getIdGenero());
             break;
-
         case "confirmar":
 
             break;

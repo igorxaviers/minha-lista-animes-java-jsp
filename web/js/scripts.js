@@ -39,34 +39,59 @@ function addEventos(){
     for(ani of animes)
     {
         let id = ani.getAttribute('data-id');
+        let obj;
         
         //Botão alterar
         acaoAlterar = ani.querySelector('.acao-alterar');
-        acaoAlterar.addEventListener('click', () => {
-            console.log('altera');
+        acaoAlterar.addEventListener('click', () => {          
+            formCadastro.classList.remove('esconde');  
             URL = 'AnimesController?acao=alterar&id='+id;
-            retorno = retornaServlet(URL);
-            console.log(retorno);
+            retornaServlet(URL, "alterar");
         });
     
         //Botão excluir
         acaoExcluir = ani.querySelector('.acao-excluir');
         acaoExcluir.addEventListener('click', () => {
-            console.log('exlcuir');
             URL = 'AnimesController?acao=excluir&id='+id;
+            if(confirm("Delete this anime ?"))
+            {
+                retornaServlet(URL,);
+                mostraAnimes()
+            }  
+            console.log(retorno)
+
         });   
     }
 }
 
 //Retorna o resultado do fetch do URL recebido como parâmetro (funciona???!!!)
-function retornaServlet(URL)
-{
-    fetch(URL, {method:'get'})
-    .then((response) => {
-        return response.text();
-    }).then((retorno) => {
-        return retorno;
-    });
+function retornaServlet(URL, acao = "")
+{   
+    fetch(URL,{method:'get'/*opcional*/}).then(function(response)
+    {
+        if(acao != "alterar")
+            return response.text();
+        
+        response.text().then(function(result)  //response é um promisse
+        {
+            let aux = result; 
+            let anime = aux.split(",");
+            console.log(anime);
+            let form =  document.forms["form-cadastro"]
+            console.log(form)
+            let src = anime[2].split('/')[1];
+            
+            form.genero.value = anime[3]
+            form.nome.value = anime[1]
+            form.imagem.src = src
+            form.imagem.className = "d-none"
+            form.showFileName.value = src
+            form.showFileName.className = "form-control d-block"
+            form.cod.value = anime[0]
+                        
+        });
+    }).catch (function(err) {console.error(err);});
+
 }
 
 //Cadatro de animes
@@ -89,6 +114,7 @@ formCadastro.addEventListener('submit', (e) => {
             {
                 console.log(retorno);
                 formCadastro.reset();
+                mostraAnimes(true)
             }
         })
 });
@@ -104,6 +130,16 @@ formBusca.addEventListener('submit', (e) => {
 const btNovo = document.querySelector('.novo-anime');
 btNovo.addEventListener('click', () => {
     formCadastro.classList.remove('esconde');
+    console.log(formCadastro)
+    formCadastro[0].value = " "
+    formCadastro[1].value = 1
+    formCadastro[2].classList.remove("d-none")
+    formCadastro[2].className = "form-control d-block"
+    formCadastro[2].src = ""
+    
+    formCadastro[3].value = ""
+    formCadastro[3].className = "d-none"
+
 });
 
 //Botão de fechar o form de cadastro 

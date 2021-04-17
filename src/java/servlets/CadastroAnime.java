@@ -37,29 +37,37 @@ public class CadastroAnime extends HttpServlet {
         String mensagem;
         Exception ex = null;
         try (PrintWriter out = response.getWriter()) {
-
+            int cod = Integer.parseInt(request.getParameter("cod"));
             int idGenero = Integer.parseInt(request.getParameter("genero"));
             String nome = request.getParameter("nome");
+            DALAnime da = new DALAnime();
+            Anime anime = null;
+            
+            if(cod != 0 )
+            {
+                anime = da.getAnime(cod);
+                anime.setIdGenero(idGenero);
+                anime.setNome(nome); 
+                da.alterar(anime);
+                //nao da pra mudar imagem pois mt estressante
+            }
+            
+
             String path = getServletContext().getRealPath("/images") + "/";
             String filePath = "images/", fileRealName = "";
             mensagem = "dados e foto recebidos com sucesso";
             Part imagem = request.getPart("imagem");
-
+            
             byte[] img = new byte[(int) imagem.getSize()];
-
             imagem.getInputStream().read(img);
-
             FileOutputStream arquivo = new FileOutputStream(new File(path + imagem.getSubmittedFileName()));
-            // out.print( getServletContext().getRealPath("") + filePath +
-            // imagem.getSubmittedFileName()); DIRETORIO DO CONTEXTO SERVLET + filePath
-
             fileRealName = filePath + imagem.getSubmittedFileName();
 
             arquivo.write(img);
             arquivo.close();
+    
+            anime = new Anime(0, idGenero, nome, fileRealName);
 
-            Anime anime = new Anime(0, idGenero, nome, fileRealName);
-            DALAnime da = new DALAnime();
             da.salvar(anime);
 
         } catch (Exception e) {
