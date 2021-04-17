@@ -38,18 +38,24 @@ a{
     background-color: #fff;
     box-shadow: rgba(0, 0, 0, 0.02) 0px 2px 5px;
     transition: 300ms;
-
+    /* background-image: url("../images/bg-anime.svg");
+    background-size: auto;
+    background-repeat: no-repeat;
+    background-position: left top; */
 }
 .anime:hover{
-    transform: translateY(-7px);
-    box-shadow: rgba(0, 0, 0, 0.04) 0px 15px 15px;
+    transform: scale(1.1);
+
+    box-shadow: rgba(0, 0, 0, 0.07) 0px 10px 25px;
 }
 .anime img{
     object-fit: cover;
-    border-radius: 50%;
-    height: 110px;
-    width: 110px;
-    border: var(--primary-color) 4px solid;
+    border-radius: 6px;
+    height: 190px;
+    width: 140px;
+    margin: 15px 0;
+    /* border: var(--primary-color) 4px solid; */
+    transition: 400ms;
 }
 .anime .acoes{
     right: 50px;
@@ -64,27 +70,40 @@ a{
     border-radius: 6px;
     background-color: var(--primary-color);
 }
+.anime .acoes .acao-excluir{
+    transition: 200ms;
+}
+.anime .acoes .acao-excluir:hover{
+    background-color: #e43e3e;
+    transform: scale(1.05);
+}
+.anime .acoes .acao-excluir:hover i{
+    color: #fff;
+}
 .anime .titulo{
     text-align: center;
-    font-weight: 700;
+    min-height: 50px;
+    font-weight: 600;
 }
 .anime .genero{
     background-color: var(--primary-color);
-    border-radius: 8px;
+    border-radius: 6px;
     padding: 4px 10px;
     width: fit-content;
     font-size: 13px;
-    font-weight: 700;
+    font-weight: 600;
     margin-left: 4px;
 }
 .novo-anime{
+    z-index: 3;
+    cursor: pointer;
     text-align: center;
     position: fixed;
     background-color: var(--primary-color);
     padding: 20px 15px;
     border-radius: 12px 0 0 12px;
     right: 0;
-    bottom: 50%;
+    bottom: 10%;
     box-shadow: rgba(0, 0, 0, 0.05) 3px 10px 15px;
     font-weight: 700;
     text-transform: uppercase;
@@ -92,7 +111,47 @@ a{
 .novo-anime i{
     font-size: 20px;
 }
+.novo-anime-form{
+    position: relative;
+    transition: 500ms;
+}
+.fechar{
+    position: absolute;
+    cursor: pointer;
+    right: 25px;
+    top: 25px;
+    padding: 8px 12px;
+    border-radius: 4px;
+    transition: 300ms;
+    background-color: rgba(0, 0, 0, 0.04);
+}
+.fechar:hover{
+    background-color: rgba(0, 0, 0, 0.13);
+}
+.btn-cadastrar{
+    font-size: 24px;
+    font-weight: 700;
+}
+.btn-cadastrar i{
+    font-size: 30px;
+    margin-left: 20px;
+}
+
 .svg-bg{
     position: absolute;
     left: -20em;
+}
+
+.mostra{
+    display: block;
+}
+.esconde{
+    /* display: none; */
+    visibility: hidden;
+    overflow: hidden;
+    opacity: 0;
+    height: 0;
+    padding: 0 !important;
+    margin: 0 auto !important;
+    transition: 500ms;
 }

@@ -39,4 +39,20 @@ public class DALGenero {
         return listaGeneros;
     }
 
+    public Genero getGenero(int id) {
+        Genero gen = null;
+        String sql = "select * from generos where id_gen = " + id;
+        Conexao con = new Conexao();
+        ResultSet rs = con.consultar(sql);
+        try {
+            if (rs.next())
+                gen = new Genero(rs.getInt("id_gen"), rs.getString("nome"));
+
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        con.fecharConexao();
+        return gen;
+    }
+
 }

@@ -21,78 +21,90 @@
         <script src="https://kit.fontawesome.com/a8349f7f3a.js" crossorigin="anonymous"></script>
         <link rel="stylesheet" href="css/style.css">
     </head>
-    <body class="col-md-8 mx-auto">
+    <body class="container">
         <header class="text-center py-5">
             <h1><a href="">Minha Lista <strong>Animes</strong></a></h1>
         </header>
         <main>
+            <div class="novo-anime">
+                <i class="fas fa-plus"></i><br>
+                novo anime
+            </div>
+
+
             <form method="GET" id="form-busca" class="busca mb-5 col-8 mx-auto">
                 <div class="input-group rounded-3">
-                    <input type="text" class="form-control py-3 border-0" placeholder="Busque por animes..." aria-label="Busque por animes...">
-                    <button class="btn btn-green px-5" type="submit" id="button-addon2"><i class="fas fa-search"></i></button>
+                    <input 
+                    type="text" 
+                    class="form-control py-3 border-0" 
+                    id="filtro" 
+                    placeholder="Busque por animes..." 
+                    aria-label="Busque por animes...">
+                    <button 
+                    class="btn btn-green px-5" 
+                    type="submit" 
+                    name="acao" 
+                    value="busca" 
+                    id="button-addon2"><i class="fas fa-search"></i>
+                    </button>
                 </div>
             </form>
 
-            <div class="novo-anime-form col-md-5 col-12 mx-auto p-4 mb-5 bg-white rounded-3">
-                <h4 class="mb-5">Novo anime: </h4>
-                <form method="POST" enctype="multipart/form-data" id="form-cadastro">
 
+                
+                <form
+                method="POST" 
+                enctype="multipart/form-data" 
+                id="form-cadastro" 
+                class="novo-anime-form esconde col-md-6 col-12 mx-auto p-4 mb-5 bg-white rounded-3">
+                
+                    <h4 class="mb-5">Novo anime: </h4>
+                    <i class="fechar fas fa-times"></i>
                     <div class="mb-3 row">
                         <label for="nome" class="col-sm-2 col-form-label">Nome: </label>
                         <div class="col-sm-10">
-                            <input type="text" name="nome" class="form-control" id="nome">
+                            <input type="text" name="nome" class="form-control" id="nome" required>
                         </div>
                     </div>
-
                     <div class="mb-3 row">
                         <label for="genero" class="col-sm-2 col-form-label">Gênero: </label>
                         <div class="col-sm-10">
-                            <select class="form-select" name="genero" id="genero">
+                            <select class="form-select" name="genero" id="genero" required>
                                 <%
                                     ArrayList<Genero> lista = new DALGenero().getGeneros("");
                                     for(Genero g : lista){
                                         out.println("<option value='"+g.getId()+"'>"+g.getNome()+"</option>");
                                     }
                                 %>
-                                <option selected>Escolha o gênero</option>
+                                <option selected disabled hidden>Escolha o gênero</option>
                             </select>
                         </div>
                     </div>
-
                     <div class="mb-5 row">
                         <label for="imagem" class="col-sm-2 col-form-label">Imagem: </label>
                         <div class="col-sm-10">
                             <input class="form-control" type="file" name="imagem" id="imagem">
                         </div>
                     </div>
-
-                    <button class="btn btn-green px-5 w-100 py-2" type="submit" id="button-addon2">Cadastrar </button>
-
+                    <button 
+                    class="btn btn-cadastrar btn-green px-5 w-100 py-2 d-flex align-items-center justify-content-center"
+                    type="submit" 
+                    name="acao" 
+                    value="confirmar" 
+                    id="button-addon2">Cadastrar <i class="fas fa-long-arrow-alt-right"></i>
+                    </button>
                 </form>
-            </div>
+
 
             <div>
-                <div class="row justify-content-center">
-                    <div class="col-6 col-md-3 ">
-                        <div class="anime">
-                            <div class="acoes">
-                                <div class="acao"><i class="fas fa-trash-alt"></i></div>
-                                <div class="acao"><i class="fas fa-pencil-alt"></i></div>
-                            </div>
-                            <img src="images/33657.jpg" alt="" class="d-block mx-auto">
-                            <p class="titulo my-3 text-center"> </p>
-                            <div class="mx-auto d-flex justify-content-center">
-                                <p class="genero">Hentai</p>
-                            </div>
-                        </div>
-                    </div>
+                <div id="lista-animes" class="row justify-content-center">
+                    
                 </div>
             </div>
-            <div class="novo-anime">
-                <i class="fas fa-plus"></i><br>
-                novo anime
-            </div>
+
         </main>
+
+
         <footer>
 
         </footer>

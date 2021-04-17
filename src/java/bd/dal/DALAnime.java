@@ -56,7 +56,7 @@ public class DALAnime {
         String sql = "select * from animes";
         if (!filtro.isEmpty())
             sql += " where " + filtro;
-        sql += " order by nome";
+        sql += " order by id_ani DESC";
         Conexao con = new Conexao();
         ResultSet rs = con.consultar(sql);
         try {
