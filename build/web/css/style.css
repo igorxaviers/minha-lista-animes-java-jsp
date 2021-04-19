@@ -44,8 +44,7 @@ a{
     background-position: left top; */
 }
 .anime:hover{
-    transform: scale(1.1);
-
+    transform: scale(1.06);
     box-shadow: rgba(0, 0, 0, 0.07) 0px 10px 25px;
 }
 .anime img{
